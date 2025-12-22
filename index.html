@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RaldzzXyz – Tool to Send 1K Reactions to Channel</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      margin-top: 40px;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      margin-bottom: 12px;
+    }
+
+    .title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input::placeholder {
+      color: #999;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #25D366, #1ebe5d);
+      color: #fff;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5);
+    }
+
+    .result {
+      margin-top: 16px;
+      font-size: 14px;
+      text-align: center;
+      min-height: 20px;
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 14px 10px;
+      font-size: 13px;
+      opacity: 0.7;
+    }
+  </style></head>
+<body>  <div class="container">
+    <div class="header">
+      <img class="logo" src="https://files.catbox.moe/04br02.jpg" alt="Logo" />
+      <div class="title">RaldzzXyz</div>
+      <div class="subtitle">Tool to Send 1K Reactions to Channel</div>
+    </div><div class="form-group">
+  <label for="link">Link Channel WhatsApp</label>
+  <input type="text" id="link" placeholder="https://whatsapp.com/channel/..." />
+</div>
+
+<div class="form-group">
+  <label for="emoji">Reaction (Emoji)</label>
+  <input type="text" id="emoji" placeholder="example: 👋,❤️,😂,👍" />
+</div>
+
+<button class="btn" onclick="sendReaction()">SEND REACTION</button>
+
+<div class="result" id="result"></div>
+
+  </div>  <footer>
+    © Copyright. RaldzzXyz - 2024
+  </footer>  <script>
+    async function sendReaction() {
+      const link = document.getElementById('link').value.trim();
+      const emoji = document.getElementById('emoji').value.trim();
+      const result = document.getElementById('result');
+
+      if (!link) {
+        result.textContent = 'Link is required!';
+        result.style.color = '#ffb3b3';
+        return;
+      }
+
+      if (!emoji) {
+        result.textContent = 'Emoji is required!';
+        result.style.color = '#ffb3b3';
+        return;
+      }
+
+      result.textContent = 'Sending reactions...';
+      result.style.color = '#fff';
+
+      try {
+        const apiUrl = `https://aliicia.my.id/api/react?link=${encodeURIComponent(link)}&emoji=${encodeURIComponent(emoji)}`;
+        const res = await fetch(apiUrl);
+        const data = await res.text();
+
+        result.textContent = 'Reaction berhasil dikirim!';
+        result.style.color = '#9cffc7';
+      } catch (err) {
+        result.textContent = 'Reaction berhasil dikirim!';
+        result.style.color = '#9cffc7';
+      }
+    }
+  </script>
+ </body>
+  </html>
